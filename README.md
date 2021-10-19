@@ -6,7 +6,7 @@
  * @LastEditTime: 2021-10-19 09:42:29
 -->
 # zd_practice
-vue3+node+mysql
+> vue3+node+mysql
 
 ## Project setup
 ```
