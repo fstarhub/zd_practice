@@ -63,7 +63,7 @@ li {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(255, 255, 255, .5);
+    /* background: rgba(255, 255, 255, .5); */
     display: flex;
     justify-content: center;
     align-items: center;

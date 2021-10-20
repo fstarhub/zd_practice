@@ -4,7 +4,7 @@ const userRoute = [
   { path: '/', redirect: '/login' },
   {
     path: '/login',
-    component: loginView
+    component: () => import('@/views/login/login')
   }
 ]
 

@@ -31,6 +31,9 @@ module.exports = {
       'before': true,
       'after': true
     }],
+    'vue/singleline-html-element-content-newline': 'off', // 单行html元素内容在新的一行
+    'vue/multiline-html-element-content-newline': 'off', // 多行html元素内容在新的一行
+    'vue/html-self-closing': 0, // 忽略html标签自闭合
     // 禁止或强制在单行代码块中使用空格
     'block-spacing': [2, 'always'],
     // 强制使用一致的缩进 第二个参数为 "tab" 时，会使用tab
@@ -126,7 +129,7 @@ module.exports = {
     // 禁止对 catch 子句的参数重新赋值
     'no-ex-assign': 2,
     // 禁止扩展原生类型
-    'no-extend-native': 2,
+    'no-extend-native': 1,
     // 禁止不必要的 .bind() 调用
     'no-extra-bind': 2,
     // 禁止不必要的布尔转换

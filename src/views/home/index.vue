@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-  name: 'componentName',
+  name: 'Home',
   data() {
     return {
     }
