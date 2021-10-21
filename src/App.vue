@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view />
-    <div v-loading="isShowLoading" class="global-loading" />
+    <!-- <div v-loading="isShowLoading" class="global-loading" /> -->
   </div>
 </template>
 
@@ -19,6 +19,9 @@ export default {
   },
   computed: {
     ...mapState(['isShowLoading'])
+  },
+  methods: {
+
   }
 }
 </script>

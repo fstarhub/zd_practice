@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-  name: 'componentName',
+  name: 'BlankLayout',
   data() {
     return {
     }
