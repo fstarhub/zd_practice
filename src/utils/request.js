@@ -10,9 +10,9 @@ let Inc = (new Date()).getTime()
 const http = axios.create({
   baseURL: window.location.origin, // 配置 baseURL
   timeout: 3000, // 配置请求超时时间
-  // headers: { application/x-www-form-urlencoded
-  //   'Content-Type': 'application/json;charset=UTF-8;',
-  // }
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8;',
+  },
   paramsSerializer: (params) => {
     return qs.stringify(params, { arrayFormat: 'brackets' })
   }
@@ -20,7 +20,7 @@ const http = axios.create({
 // 请求拦截器
 http.interceptors.request.use((config) => {
   Nprogress.start()
-  // console.log("请求之前",config)
+  console.log('请求之前', config)
   // get请求添加一个去缓存变量
   if (config.method === 'get') {
     Inc += 1
