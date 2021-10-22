@@ -1,9 +1,9 @@
 <template>
-  <!-- <el-container>
+  <el-container>
     <el-main>
+      shouye
     </el-main>
-  </el-container> -->
-  <div>shouye</div>
+  </el-container>
 </template>
 <script>
 export default {

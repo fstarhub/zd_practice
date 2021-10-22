@@ -14,14 +14,15 @@
               <el-form
                 ref="loginformRef"
                 class="loginFormClass"
-                label-position="top"
-                label-width="100px"
+                label-position="right"
+                label-width="80px"
                 :model="loginform"
                 hide-required-asterisk
                 @submit.prevent
               >
                 <el-form-item
                   prop="account"
+                  class="accountClass"
                   label="account"
                   :rules="[
                     {
@@ -56,8 +57,9 @@
                 </el-form-item>
                 <el-form-item class="login_btn_box clearfix">
                   <el-button
-                    class="login_btn"
+                    class="register_btn"
                     native-type="submit"
+                    plain
                     @click="register"
                   >
                     register
@@ -82,25 +84,105 @@
 
 <script>
 import { reactive, ref } from 'vue'
+import { useRouter, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+import { useStore } from 'vuex'
+import { ElMessage } from 'element-plus'
+
+import userApi from '@/api/user.js'
 export default {
   name: 'Login',
   setup() {
+    const router = useRouter()
+    const store = useStore()
     const accountError = ref('')
     const pwdError = ref('')
     const isShowLoading = false
     const bg = reactive({
       backgroundImage: ''
     })
+    const loginformRef = ref(null)
     const loginform = reactive({
       account: '',
       password: ''
     })
-    return { accountError, pwdError, isShowLoading, bg, loginform }
-  },
-  data() {
-    return {
-      aa: ''
+    const login = async() => {
+      // router.push({
+      //   path: 'home',
+      //   query: {
+      //     name: 'zhangsan'
+      //   }
+      // })
+      const res = await userApi.login(loginform)
+      console.log(res, 'res')
+      // loginformRef.value.validate(async(valid) => {
+      //   if (valid) {
+      //     const payload = {
+      //       account: parseInt(loginform.account),
+      //       password: loginform.password
+      //     }
+      //     const res = await userApi.userLogin(payload)
+      //     if (res.code !== 200) {
+      //       return ElMessage.error(res.msg)
+      //     } else {
+      //       const token = res.data.token
+      //       localStorage.setItem('token', token)
+      //       store.commit('setLogin', res.data)
+      //       // router.push('/home')
+      //       router.push({
+      //         path: 'home',
+      //         query: {
+      //           name: 'zhangsan'
+      //         }
+      //       })
+      //       ElMessage.success('login success !')
+      //     }
+      //   } else {
+      //     ElMessage.error('validate fail !')
+      //     return false
+      //   }
+      // })
     }
+    // async function login() {
+    //   // const res = await userLogin(payload)
+    //   // router.push({
+    //   //   path: 'home',
+    //   //   query: {
+    //   //     name: 'zhangsan'
+    //   //   }
+    //   // })
+
+    //   loginformRef.value.validate(async(valid) => {
+    //     if (valid) {
+    //       const payload = {
+    //         account: parseInt(loginform.account),
+    //         password: loginform.password
+    //       }
+    //       const res = await userApi.userLogin(payload)
+    //       if (res.code !== 200) {
+    //         return ElMessage.error(res.msg)
+    //       } else {
+    //         const token = res.data.token
+    //         localStorage.setItem('token', token)
+    //         store.commit('setLogin', res.data)
+    //         // router.push('/home')
+    //         router.push({
+    //           path: 'home',
+    //           query: {
+    //             name: 'zhangsan'
+    //           }
+    //         })
+    //         ElMessage.success('login success !')
+    //       }
+    //     } else {
+    //       ElMessage.error('validate fail !')
+    //       return false
+    //     }
+    //   })
+    // }
+    onBeforeRouteLeave((to, from) => {
+      console.log('jaja')
+    })
+    return { accountError, pwdError, isShowLoading, bg, loginform, login, onBeforeRouteLeave }
   },
   watch: {
     $route: {
@@ -114,9 +196,14 @@ export default {
     this.bg.backgroundImage = 'url(' + require('../../assets/imgs/bg0' + new Date().getDay() + '.jpg') + ')'
   },
   methods: {
-    login() {},
+    // login() {
+
+    // },
     register() {
       console.log('jjaajaj')
+      // console.log(this.$router, 'router', this.$route, 'route')
+      // userApi.test()
+      console.log(window.location.origin, 'oriigns')
     }
     // submit() {
     //   this.$axios({
@@ -159,73 +246,13 @@ export default {
   align-items: center;
   // color: #fff;
 }
-// .login-vue .container {
-//   background: rgba(255, 255, 255, 0.5);
-//   width: 300px;
-//   text-align: center;
-//   border-radius: 10px;
-//   padding: 30px;
-// }
-// .login-vue .ivu-input {
-//   background-color: transparent;
-//   color: #fff;
-//   outline: #fff;
-//   border-color: #fff;
-// }
-// .login-vue ::-webkit-input-placeholder {
-//   /* WebKit, Blink, Edge */
-//   color: rgba(255, 255, 255, 0.8);
-// }
-// .login-vue :-moz-placeholder {
-//   /* Mozilla Firefox 4 to 18 */
-//   color: rgba(255, 255, 255, 0.8);
-// }
-// .login-vue ::-moz-placeholder {
-//   /* Mozilla Firefox 19+ */
-//   color: rgba(255, 255, 255, 0.8);
-// }
-// .login-vue :-ms-input-placeholder {
-//   /* Internet Explorer 10-11 */
-//   color: rgba(255, 255, 255, 0.8);
-// }
-// .login-vue .title {
-//   font-size: 16px;
-//   margin-bottom: 20px;
-// }
-// .login-vue .input-c {
-//   margin: auto;
-//   width: 200px;
-// }
-// .login-vue .error {
-//   color: red;
-//   text-align: left;
-//   margin: 5px auto;
-//   font-size: 12px;
-//   padding-left: 30px;
-//   height: 20px;
-// }
-// .login-vue .submit {
-//   width: 200px;
-// }
-// .login-vue .account {
-//   margin-top: 30px;
-// }
-// .login-vue .account span {
-//   cursor: pointer;
-// }
-// .login-vue .ivu-icon {
-//   color: #eee;
-// }
-// .login-vue .ivu-icon-ios-close-circle {
-//   color: #777;
-// }
 
 .grid-content {
   height: 400px;
 }
 
 .loginFormClass {
-  padding: 20px 100px;
+  padding: 30px 60px 10px 40px;
   // .el-form--label-top .el-form-item__label {
     color: #fff;
   // }
@@ -248,16 +275,24 @@ export default {
   .welcome {
     text-align: center;
     font-size: 30px;
-    padding-top: 20px;
+    padding-top: 40px;
   }
 }
 .login_btn_box {
-  text-align: center;
-  margin-top: 50px;
+  // text-align: center;
+  padding-top: 20px;
 }
-.el-form-item__label {
+::v-deep .el-form-item__label {
   color: #fff;
   font-size: 15px;
+}
+::v-deep .el-input__inner {
+  color: #fff;
+  background: rgb(255,255,255,0);
+}
+.register_btn {
+  background: rgba(255, 255, 255, .3);
+  color: #fff;
 }
 .login_btn {
   width: 100px;
