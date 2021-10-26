@@ -112,7 +112,11 @@ export default {
       //     name: 'zhangsan'
       //   }
       // })
-      const res = await userApi.login(loginform)
+      const param = {
+        account: loginform.account,
+        password: loginform.password
+      }
+      const res = await userApi.login(param)
       console.log(res, 'res')
       // loginformRef.value.validate(async(valid) => {
       //   if (valid) {
