@@ -106,18 +106,25 @@ export default {
       password: ''
     })
     const login = async() => {
-      // router.push({
-      //   path: 'home',
-      //   query: {
-      //     name: 'zhangsan'
-      //   }
-      // })
       const param = {
-        account: loginform.account,
+        user_name: loginform.account,
         password: loginform.password
       }
       const res = await userApi.login(param)
-      console.log(res, 'res')
+      if (res.code === 0 && res.message === '用户登录成功') {
+        console.log('aaaaa')
+        const token = res.result.token
+        localStorage.setItem('token', token)
+        // store.commit('setLogin', res)
+        router.push({
+          path: 'home',
+          query: {
+            name: '测试'
+          }
+        })
+      } else {
+        return ElMessage.error(res.message)
+      }
       // loginformRef.value.validate(async(valid) => {
       //   if (valid) {
       //     const payload = {
@@ -146,14 +153,6 @@ export default {
       //   }
       // })
     }
-    // async function login() {
-    //   // const res = await userLogin(payload)
-    //   // router.push({
-    //   //   path: 'home',
-    //   //   query: {
-    //   //     name: 'zhangsan'
-    //   //   }
-    //   // })
 
     //   loginformRef.value.validate(async(valid) => {
     //     if (valid) {

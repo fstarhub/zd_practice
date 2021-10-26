@@ -2,7 +2,7 @@ import request from '../utils/request'
 
 export default class userApi {
   static login(data) {
-    request({
+    return request({
       url: '/users/login',
       method: 'post',
       data: data

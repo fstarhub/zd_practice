@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    user_name: '',
     isShowLoading: false, // 全局 loading
     // 左侧菜单栏数据
     menuItems: [

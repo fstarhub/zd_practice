@@ -15,9 +15,9 @@ module.exports = {
   },
   devServer: {
     // 本地ip地址
-    host: '172.20.10.2',
-    port: 8080,
-    disableHostCheck: true,
+    // host: '172.20.10.2',
+    // port: 8080,
+    // disableHostCheck: true,
     /* 使用代理 */
     proxy: {
       '/': {
