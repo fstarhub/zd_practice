@@ -9,6 +9,10 @@ const userRoute = [
   {
     path: '/home',
     component: basicLayout
+  },
+  {
+    path: '/register',
+    component: () => import('@/views/register/register')
   }
 ]
 

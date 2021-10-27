@@ -1,3 +1,10 @@
+<!--
+ * @Description: 欢迎页layout
+ * @Autor: fengshuai
+ * @Date: 2021-10-26 08:50:53
+ * @LastEditors: fengshuai
+ * @LastEditTime: 2021-10-27 09:10:13
+-->
 <template>
   <el-container>
     <el-header>
@@ -8,7 +15,7 @@
         菜单栏
       </el-aside>
       <el-main>
-        主页啦
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>

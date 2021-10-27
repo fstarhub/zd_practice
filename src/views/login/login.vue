@@ -1,14 +1,15 @@
+
 <template>
   <div class="login-vue" :style="bg">
     <el-container>
       <el-main>
-        <el-row :gutter="20">
-          <el-col :span="6" :offset="6">
+        <el-row :gutter="20" class="colClass">
+          <el-col :span="8" :offset="4">
             <div class="grid-content bg-left">
               <p class="welcomeTitle">欢迎登陆呀码头商城</p>
             </div>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <div class="grid-content bg-right">
               <p class="welcome">welcome</p>
               <el-form
@@ -100,19 +101,32 @@ export default {
     const bg = reactive({
       backgroundImage: ''
     })
-    const loginformRef = ref(null)
     const loginform = reactive({
       account: '',
       password: ''
     })
+    const register = async() => {
+      router.push({
+        path: 'register',
+        params: {
+          name: 'register'
+        }
+      })
+    }
     const login = async() => {
+      if (!loginform.account || !loginform.password) {
+        ElMessage({
+          message: '请输入账户名称和密码',
+          type: 'warning'
+        })
+        return
+      }
       const param = {
         user_name: loginform.account,
         password: loginform.password
       }
       const res = await userApi.login(param)
-      if (res.code === 0 && res.message === '用户登录成功') {
-        console.log('aaaaa')
+      if (res.message === '用户登录成功') {
         const token = res.result.token
         localStorage.setItem('token', token)
         // store.commit('setLogin', res)
@@ -125,33 +139,6 @@ export default {
       } else {
         return ElMessage.error(res.message)
       }
-      // loginformRef.value.validate(async(valid) => {
-      //   if (valid) {
-      //     const payload = {
-      //       account: parseInt(loginform.account),
-      //       password: loginform.password
-      //     }
-      //     const res = await userApi.userLogin(payload)
-      //     if (res.code !== 200) {
-      //       return ElMessage.error(res.msg)
-      //     } else {
-      //       const token = res.data.token
-      //       localStorage.setItem('token', token)
-      //       store.commit('setLogin', res.data)
-      //       // router.push('/home')
-      //       router.push({
-      //         path: 'home',
-      //         query: {
-      //           name: 'zhangsan'
-      //         }
-      //       })
-      //       ElMessage.success('login success !')
-      //     }
-      //   } else {
-      //     ElMessage.error('validate fail !')
-      //     return false
-      //   }
-      // })
     }
 
     //   loginformRef.value.validate(async(valid) => {
@@ -185,7 +172,7 @@ export default {
     onBeforeRouteLeave((to, from) => {
       console.log('jaja')
     })
-    return { accountError, pwdError, isShowLoading, bg, loginform, login, onBeforeRouteLeave }
+    return { accountError, pwdError, isShowLoading, bg, loginform, register, login, onBeforeRouteLeave }
   },
   watch: {
     $route: {
@@ -199,43 +186,6 @@ export default {
     this.bg.backgroundImage = 'url(' + require('../../assets/imgs/bg0' + new Date().getDay() + '.jpg') + ')'
   },
   methods: {
-    // login() {
-
-    // },
-    register() {
-      console.log('jjaajaj')
-      // console.log(this.$router, 'router', this.$route, 'route')
-      // userApi.test()
-      console.log(window.location.origin, 'oriigns')
-    }
-    // submit() {
-    //   this.$axios({
-    //     url: 'http://localhost:9999/auth/auth/login',
-    //     params: {
-    //       account: this.account,
-    //       password: this.pwd
-    //     }
-    //   }).then(response => {
-    //     if (response.data.code === 0) {
-    //       this.isShowLoading = true
-    //       // 登陆成功 设置用户信息
-    //       localStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
-    //       localStorage.setItem('userName', response.data.data.user.name)
-    //       // 登陆成功 假设这里是后台返回的 token
-    //       localStorage.setItem('token', response.data.data.token)
-    //       this.$router.push({ path: this.redirect || '/' })
-    //     } else {
-    //       if (response.data.code === 4000003) {
-    //         this.accountError = response.data.msg
-    //         this.pwdError = ''
-    //       }
-    //       if (response.data.code === 4000004) {
-    //         this.accountError = ''
-    //         this.pwdError = response.data.msg
-    //       }
-    //     }
-    //   })
-    // }
   }
 }
 </script>
@@ -244,10 +194,11 @@ export default {
 // @import "@styles/login.scss";
 .login-vue {
   height: 100%;
+  // width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  // color: #fff;
+  background-size: 100%;
 }
 
 .grid-content {
@@ -297,7 +248,10 @@ export default {
   background: rgba(255, 255, 255, .3);
   color: #fff;
 }
-.login_btn {
-  width: 100px;
+.colClass {
+  margin-top: 8%;
 }
+// .login_btn {
+//   width: 100px;
+// }
 </style>

@@ -8,6 +8,13 @@ export default class userApi {
       data: data
     })
   }
+  static register(data) {
+    return request({
+      url: '/users/register',
+      method: 'post',
+      data: data
+    })
+  }
 
   static test() {
     console.log('ceshi')
