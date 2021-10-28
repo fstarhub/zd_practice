@@ -88,7 +88,7 @@
         </el-col>
         <el-col v-else :span="8" :offset="8">
           <div class="grid-content bg-right registerSuccess">
-            <p class="welcome">恭喜您成功呀码头小主</p>
+            <p class="welcome">恭喜您成为呀码头小主</p>
             <el-button class="goRegistBtn" type="primary" @click="goToLogin">去登陆</el-button>
           </div>
         </el-col>

@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -80,6 +80,12 @@ li {
   margin-top: 60px;
 } */
 .el-container {
-  height: 100%;
+  // height: 100%;
+  width: 100%;
+  // line-height: normal;
+  .el-main {
+    padding: 0px;
+    // line-height: 0;
+  }
 }
 </style>

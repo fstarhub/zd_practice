@@ -129,9 +129,9 @@ export default {
       if (res.message === '用户登录成功') {
         const token = res.result.token
         localStorage.setItem('token', token)
-        // store.commit('setLogin', res)
+        store.commit('setLogin', res.result.userInfo)
         router.push({
-          path: 'home',
+          path: 'basicLayout',
           query: {
             name: '测试'
           }
@@ -175,12 +175,12 @@ export default {
     return { accountError, pwdError, isShowLoading, bg, loginform, register, login, onBeforeRouteLeave }
   },
   watch: {
-    $route: {
-      handler(route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
-    }
+    // $route: {
+    //   handler(route) {
+    //     this.redirect = route.query && route.query.redirect
+    //   },
+    //   immediate: true
+    // }
   },
   created() {
     this.bg.backgroundImage = 'url(' + require('../../assets/imgs/bg0' + new Date().getDay() + '.jpg') + ')'

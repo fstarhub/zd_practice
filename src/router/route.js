@@ -7,8 +7,15 @@ const userRoute = [
     component: () => import('@/views/login/login')
   },
   {
-    path: '/home',
-    component: basicLayout
+    path: '/basicLayout',
+    component: basicLayout,
+    redirect: '/basicLayout/home',
+    children: [
+      {
+        path: 'home',
+        component: () => import('@/views/home/index')
+      }
+    ]
   },
   {
     path: '/register',

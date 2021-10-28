@@ -2,7 +2,15 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    id: null,
     user_name: '',
+    is_admin: '',
+    isLogin: false,
+    userInfo: {
+      id: null,
+      user_name: '',
+      is_admin: ''
+    },
     isShowLoading: false, // 全局 loading
     // 左侧菜单栏数据
     menuItems: [
@@ -139,6 +147,17 @@ export default createStore({
     ]
   },
   mutations: {
+    setLogin(state, payload) {
+      state.id = payload.id
+      state.user_name = payload.user_name
+      state.is_admin = payload.is_admin
+      state.isLogin = true
+    },
+    setLogout(state, payload) {
+      state.user_name = ''
+      state.isLogin = false
+    },
+
     setMenus(state, items) {
       state.menuItems = [...items]
     },
