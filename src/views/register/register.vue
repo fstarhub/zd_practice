@@ -80,6 +80,9 @@
                   register
                 </el-button>
               </el-form-item>
+              <div class="toLoginViewContainer">
+                <i class="toLoginView" @click="toLoginPage">已有账号，去登录</i>
+              </div>
             </el-form>
           </div>
         </el-col>
@@ -149,7 +152,16 @@ export default {
       })
     }
 
-    return { needRegisterStatus, loginform, register, goToLogin }
+    function toLoginPage() {
+      router.push({
+        path: 'login',
+        params: {
+          name: 'has account'
+        }
+      })
+    }
+
+    return { needRegisterStatus, loginform, register, goToLogin, toLoginPage }
   },
   data() {
     return {
@@ -199,5 +211,12 @@ export default {
 }
 .registerSuccess {
   text-align: center;
+}
+.toLoginViewContainer {
+  text-align: center;
+  .toLoginView {
+    color: brown;
+    cursor: pointer;
+  }
 }
 </style>
