@@ -1,8 +1,6 @@
 <template>
   <el-container>
-    <el-main>
-      shouye
-    </el-main>
+    <el-main>aaa</el-main>
   </el-container>
 </template>
 <script>

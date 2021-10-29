@@ -48,9 +48,10 @@ http.interceptors.response.use((response) => {
   // 如果后端响应的状态不是200，那么直接抛出异常
   return response.data
 }, (error) => {
-  if (error.response.status) {
+  console.log(error, 'eroor')
+  if (error.response.code) {
     // 响应错误
-    const status = error.response.status
+    const status = error.response.code
     // 根据不同的状态码，提示不同的信息
     switch (status) {
       case 404:
