@@ -4,12 +4,12 @@
     <el-container>
       <el-main>
         <el-row :gutter="20" class="colClass">
-          <el-col :span="8" :offset="4">
+          <el-col :span="7" :offset="4">
             <div class="grid-content bg-left">
               <p class="welcomeTitle">欢迎登陆呀码头商城</p>
             </div>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="7">
             <div class="grid-content bg-right">
               <p class="welcome">welcome</p>
               <el-form
@@ -200,6 +200,14 @@ export default {
   align-items: center;
   background-size: 100%;
 }
+.el-container {
+  height: 100%;
+  width: 100%;
+  .el-main {
+    height: 100%;
+    width: 100%;
+  }
+}
 
 .grid-content {
   height: 400px;
@@ -249,6 +257,8 @@ export default {
   color: #fff;
 }
 .colClass {
+  width: 100%;
+  margin: 0 auto;
   margin-top: 8%;
 }
 // .login_btn {

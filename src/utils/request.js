@@ -5,6 +5,15 @@ import { ElMessage } from 'element-plus'
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 
+// 环境的切换
+if (process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = '/'
+} else if (process.env.NODE_ENV === 'debug') {
+  axios.defaults.baseURL = ''
+} else if (process.env.NODE_ENV === 'production') {
+  axios.defaults.baseURL = 'http://api.123dailu.com/'
+}
+
 let Inc = (new Date()).getTime()
 
 const http = axios.create({

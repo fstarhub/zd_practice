@@ -177,9 +177,16 @@ export default {
 
 <style lang="scss" scoped>
 .elContainer {
-  // height: 100%;
+  height: 100%;
   background: url('../../assets/imgs/login_bg1.jpg') no-repeat;
   background-size: 100% 100%;
+  .el-main {
+    height: 100%;
+    width: 100%;
+    .el-row {
+      width: 100%;
+    }
+  }
 }
 .registerClass {
   margin-top: 8%;
