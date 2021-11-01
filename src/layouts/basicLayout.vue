@@ -8,15 +8,19 @@
 <template>
   <el-container>
     <el-header>
-      {{ store.state.user_name }}, 欢迎主人回来~ {{ time }}
+      <!-- {{ store.state.user_name }}, 欢迎主人回来~ {{ time }} -->
+      <Header />
     </el-header>
     <el-container>
       <el-aside width="200px">
-        菜单栏
+        <Aside />
       </el-aside>
-      <el-container class="contentContainer">
+      <el-main>
         <router-view></router-view>
-      </el-container>
+      </el-main>
+      <!-- <el-container class="contentContainer">
+        <router-view></router-view>
+      </el-container> -->
     </el-container>
   </el-container>
 </template>
@@ -25,8 +29,12 @@ import { onMounted, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 
 import moment from 'moment'
+
+import Aside from './componetes/aside.vue'
+import Header from './componetes/header.vue'
 export default {
   name: 'BasicLayout',
+  components: { Aside, Header },
   setup() {
     const store = useStore()
     const time = ref()
@@ -49,19 +57,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-header,
-.el-footer {
+.el-header {
   background-color: #b3c0d1;
-  color: var(--el-text-color-primary);
-  text-align: center;
+  // color: var(--el-text-color-primary);
+  // text-align: center;
   line-height: 60px;
+  width: 100%;
+  padding: 0;
 }
 
 .el-aside {
   background-color: #d3dce6;
   color: var(--el-text-color-primary);
-  text-align: center;
-  line-height: 200px;
+  // text-align: center;
+  // line-height: 200px;
 }
 
 .el-container {
