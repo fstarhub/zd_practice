@@ -12,6 +12,7 @@ export default createStore({
       is_admin: ''
     },
     isShowLoading: false, // 全局 loading
+    token: 'shuai',
     // 左侧菜单栏数据
     menuItems: [
       {
@@ -149,9 +150,10 @@ export default createStore({
   mutations: {
     setLogin(state, payload) {
       state.id = payload.id
-      state.user_name = payload.user_name
-      state.is_admin = payload.is_admin
+      state.user_name = payload.userInfo.user_name
+      state.is_admin = payload.userInfo.is_admin
       state.isLogin = true
+      state.token = payload.token
     },
     setLogout(state, payload) {
       state.user_name = ''

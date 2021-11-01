@@ -129,7 +129,7 @@ export default {
       if (res.message === '用户登录成功') {
         const token = res.result.token
         localStorage.setItem('token', token)
-        store.commit('setLogin', res.result.userInfo)
+        store.commit('setLogin', res.result)
         router.push({
           path: 'basicLayout',
           query: {
@@ -170,7 +170,7 @@ export default {
     //   })
     // }
     onBeforeRouteLeave((to, from) => {
-      console.log('jaja')
+      console.log('路由导航——暂未使用')
     })
     return { accountError, pwdError, isShowLoading, bg, loginform, register, login, onBeforeRouteLeave }
   },
