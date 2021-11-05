@@ -156,8 +156,11 @@ export default createStore({
       state.token = payload.token
     },
     setLogout(state, payload) {
+      state.id = null
       state.user_name = ''
+      state.is_admin = ''
       state.isLogin = false
+      state.token = ''
     },
 
     setMenus(state, items) {

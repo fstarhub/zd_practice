@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2021-10-26 08:50:53
  * @LastEditors: fengshuai
- * @LastEditTime: 2021-10-27 09:10:13
+ * @LastEditTime: 2021-11-05 09:58:36
 -->
 <template>
   <el-container>
@@ -28,8 +28,6 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 
-import moment from 'moment'
-
 import Aside from './componetes/aside.vue'
 import Header from './componetes/header.vue'
 export default {
@@ -37,17 +35,11 @@ export default {
   components: { Aside, Header },
   setup() {
     const store = useStore()
-    const time = ref()
     const state = reactive({
       user_name: ''
     })
 
-    onMounted(() => {
-      time.value = moment(new Date()).format('YYYY-MM-DD')
-      // console.log(store, 'store')
-    })
-
-    return { time, state, store }
+    return { state, store }
   },
   data() {
     return {
@@ -58,7 +50,8 @@ export default {
 
 <style lang="scss" scoped>
 .el-header {
-  background-color: #b3c0d1;
+  // background-color: #b3c0d1;
+  background-color: #fff;
   // color: var(--el-text-color-primary);
   // text-align: center;
   line-height: 60px;

@@ -4,7 +4,7 @@
     <el-container>
       <el-main>
         <el-row :gutter="20" class="colClass">
-          <el-col :span="7" :offset="4">
+          <el-col :span="7" :offset="5">
             <div class="grid-content bg-left">
               <p class="welcomeTitle">欢迎登陆呀码头商城</p>
             </div>
