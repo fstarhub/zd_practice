@@ -1,3 +1,9 @@
+/*
+ * @Author: fengshuai 
+ * @Date: 2021-10-17 10:09:25 
+ * @Last Modified by:   fengshuai 
+ * @Last Modified time: 2021-11-17 10:09:25 
+ */
 
 <template>
   <div class="login-vue" :style="bg">
@@ -114,6 +120,7 @@ export default {
       })
     }
     const login = async() => {
+      // console.log(process.env, 'development')
       if (!loginform.account || !loginform.password) {
         ElMessage({
           message: '请输入账户名称和密码',
