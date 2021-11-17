@@ -1,7 +1,15 @@
+/*
+ * @Description: 
+ * @Autor: fengshuai
+ * @Date: 2021-10-19 09:40:21
+ * @LastEditors: fengshuai
+ * @LastEditTime: 2021-11-17 16:22:07
+ */
 import { createApp } from 'vue'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import './styles/elementReset.scss'
 
 import App from './App.vue'
 

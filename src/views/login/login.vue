@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2021-10-19 15:30:34
  * @LastEditors: fengshuai
- * @LastEditTime: 2021-11-17 11:06:03
+ * @LastEditTime: 2021-11-17 16:27:55
 -->
 
 <template>
@@ -14,6 +14,15 @@
           <el-col :span="7" :offset="5">
             <div class="grid-content bg-left">
               <p class="welcomeTitle">欢迎登陆呀码头商城</p>
+              <el-calendar v-model="calendarValue" class="calendar" />
+              <!-- <el-calendar v-model="calendarValue">
+                <template #dateCell="{ data }">
+                  <p :class="data.isSelected ? 'is-selected' : ''">
+                    {{ data.day.split('-').slice(1).join('-') }}
+                    {{ data.isSelected ? '✔️' : '' }}
+                  </p>
+                </template>
+              </el-calendar> -->
             </div>
           </el-col>
           <el-col :span="7">
@@ -108,6 +117,7 @@ export default {
     const bg = reactive({
       backgroundImage: ''
     })
+    const calendarValue = ref(new Date())
     const loginform = reactive({
       account: '',
       password: ''
@@ -180,7 +190,7 @@ export default {
     onBeforeRouteLeave((to, from) => {
       console.log('路由导航——暂未使用')
     })
-    return { accountError, pwdError, isShowLoading, bg, loginform, register, login, onBeforeRouteLeave }
+    return { accountError, pwdError, isShowLoading, bg, calendarValue, loginform, register, login, onBeforeRouteLeave }
   },
   watch: {
     // $route: {
@@ -198,7 +208,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scope>
 // @import "@styles/login.scss";
 .login-vue {
   height: 100%;
@@ -229,12 +239,18 @@ export default {
 }
 .bg-left {
   // background: url('../../assets/imgs/login_bg.jpg') no-repeat;
-  background: pink;
+  background: rgba(255, 255, 255, .5);
   border-radius: 10px;
   .welcomeTitle {
     font-size: 20px;
-    padding-top: 20px;
+    padding-top: 10px;
     text-align: center;
+    color: deeppink;
+  }
+  .calendar {
+    height: 100%;
+    background: transparent;
+    border-radius: 0 0 10px 10px;
   }
 }
 .bg-right {
@@ -273,3 +289,4 @@ export default {
 //   width: 100px;
 // }
 </style>
+
