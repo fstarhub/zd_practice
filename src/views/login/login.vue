@@ -1,9 +1,10 @@
-/*
- * @Author: fengshuai 
- * @Date: 2021-10-17 10:09:25 
- * @Last Modified by:   fengshuai 
- * @Last Modified time: 2021-11-17 10:09:25 
- */
+<!--
+ * @Description: 
+ * @Autor: fengshuai
+ * @Date: 2021-10-19 15:30:34
+ * @LastEditors: fengshuai
+ * @LastEditTime: 2021-11-17 11:06:03
+-->
 
 <template>
   <div class="login-vue" :style="bg">
