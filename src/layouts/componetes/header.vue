@@ -17,7 +17,7 @@
       <img src="../../assets/imgs/logo.webp" alt="呀码头">
     </div>
     <div class="userTitle">
-      <span class="userName">{{ store.state.user_name }}</span>, 欢迎主人回来~ <u class="loginTime">{{ time }}</u>
+      <span class="userName">你好，{{ store.state.user_name }}</span>, 欢迎回来哦！今天是 <u class="loginTime">{{ time }}</u>
     </div>
     <div class="titleSetting">
       <el-dropdown>
@@ -42,6 +42,7 @@ import { useRouter, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
 import moment from 'moment'
 import { ArrowDown } from '@element-plus/icons'
+import { ElMessageBox, ElMessage } from 'element-plus'
 export default {
   name: 'Header',
   components: {
@@ -68,14 +69,31 @@ export default {
       alert('修改密码')
     }
     const loginOut = () => {
-      localStorage.setItem('token', '')
-      store.commit('setLogout', '')
-      router.push({
-        path: '/',
-        query: {
-          name: '退出登录'
+      ElMessageBox.confirm(
+        '确认要退出当前登录账号吗',
+        '提示',
+        {
+          confirmButtonText: '是',
+          cancelButtonText: '取消',
+          type: 'warning'
         }
-      })
+      )
+        .then(() => {
+          localStorage.setItem('token', '')
+          store.commit('setLogout', '')
+          router.push({
+            path: '/',
+            query: {
+              name: '退出登录'
+            }
+          })
+        })
+        .catch(() => {
+          ElMessage({
+            type: 'info',
+            message: '已取消'
+          })
+        })
     }
 
     return { store, time, handleClick, myInfo, resetPassword, loginOut }
@@ -110,10 +128,12 @@ export default {
   .userTitle {
     width: 50%;
     .userName {
-      color: red;
+      font-size: 18px;
+      font-weight: 800;
+      color: #00FA9A;
     }
     .loginTime {
-      // color: goldenrod;
+      color: fuchsia;
     }
   }
   .titleSetting {
