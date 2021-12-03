@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2021-10-26 08:50:53
  * @LastEditors: fengshuai
- * @LastEditTime: 2021-11-05 09:58:36
+ * @LastEditTime: 2021-12-03 09:49:08
 -->
 <template>
   <el-container>
@@ -54,7 +54,8 @@ export default {
   background-color: #fff;
   // color: var(--el-text-color-primary);
   // text-align: center;
-  line-height: 60px;
+  height: 50px;
+  line-height: 50px;
   width: 100%;
   padding: 0;
 }
@@ -76,12 +77,8 @@ export default {
   background-color: #e9eef3;
   color: var(--el-text-color-primary);
   text-align: center;
-  // line-height: 160px;
+  padding: 20px;
 }
-
-// body > .el-container {
-//   margin-bottom: 40px;
-// }
 
 .contentContainer {
   padding: 20px;

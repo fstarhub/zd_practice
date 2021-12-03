@@ -1,18 +1,18 @@
 <!--
- * @Description: 
+ * @Description: 左侧边栏
  * @Autor: fengshuai
  * @Date: 2021-11-01 10:05:46
  * @LastEditors: fengshuai
- * @LastEditTime: 2021-11-17 11:04:14
+ * @LastEditTime: 2021-12-03 09:03:52
 -->
 
 <template>
   <el-container>
     <el-main>
-      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
+      <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
         <el-radio-button :label="false">expand</el-radio-button>
         <el-radio-button :label="true">collapse</el-radio-button>
-      </el-radio-group>
+      </el-radio-group> -->
       <el-menu
         default-active="2"
         class="el-menu-vertical-demo"
@@ -81,9 +81,13 @@ export default {
   width: 200px;
   // min-height: 400px;
   min-height: auto;
+  background-color:#87CEEB;
 }
-.el-main {
-  background: burlywood;
+::v-deep.el-main {
+  background: #AFEEEE;
+}
+::v-deep.el-sub-menu .el-menu {
+  background-color: #AFEEEE;
 }
 </style>
 

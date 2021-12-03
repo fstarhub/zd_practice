@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2021-11-01 15:34:13
  * @LastEditors: fengshuai
- * @LastEditTime: 2021-11-17 11:06:41
+ * @LastEditTime: 2021-12-03 09:09:23
 -->
 
 <template>
@@ -94,7 +94,7 @@ export default {
 // }
 .container {
   // background: #7e3dff;
-  height: 60px;
+  height: 50px;
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -104,7 +104,7 @@ export default {
     // background: lawngreen;
     img {
       width: 200px;
-      height: 60px;
+      height: 50px;
     }
   }
   .userTitle {
