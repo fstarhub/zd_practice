@@ -87,6 +87,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.el-container {
+  text-align: center;
+}
 .elRow {
   width: 100%;
   margin-top: 30px;

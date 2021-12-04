@@ -20,12 +20,16 @@
         @open="handleOpen"
         @close="handleClose"
       >
+        <el-menu-item index="4" @click="goHomePage">
+          <el-icon><document /></el-icon>
+          <span>首页</span>
+        </el-menu-item>
         <el-sub-menu index="1">
           <template #title>
             <el-icon><location /></el-icon>
-            <span>我的发布</span>
+            <span>商品</span>
           </template>
-          <el-menu-item index="1-1">已发布</el-menu-item>
+          <el-menu-item index="1-1" @click="PublishPageMenu">已发布商品</el-menu-item>
           <el-menu-item index="1-2">未发布</el-menu-item>
           <el-menu-item index="1-3">发布设置</el-menu-item>
           <el-menu-item index="1-4">发布提醒</el-menu-item>
@@ -45,12 +49,14 @@
 </template>
 <script>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { Location, Document, Menu as IconMenu, Setting } from '@element-plus/icons'
 export default {
   name: 'Aside',
   components: {
     Location,
-    IconMenu
+    IconMenu,
+    Document
   },
   setup() {
     const isCollapse = ref(false)
@@ -61,7 +67,24 @@ export default {
       console.log(key, keyPath)
     }
 
-    return { isCollapse, handleOpen, handleClose }
+    const router = useRouter()
+
+    const goHomePage = () => {
+      router.push({
+        path: '/basicLayout',
+        query: 'home'
+      })
+    }
+
+    const PublishPageMenu = () => {
+      // if (router)
+      router.push({
+        path: '/basicLayout/publishGoods',
+        query: 'aaa'
+      })
+    }
+
+    return { isCollapse, handleOpen, handleClose, PublishPageMenu, goHomePage }
   },
   data() {
     return {

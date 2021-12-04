@@ -14,6 +14,10 @@ const userRoute = [
       {
         path: 'home',
         component: () => import('@/views/home/index')
+      },
+      {
+        path: 'publishGoods',
+        component: () => import('@/views/goods/publishGoods/index')
       }
     ]
   },

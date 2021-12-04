@@ -90,6 +90,7 @@ li {
 .el-container {
   // height: 100%;
   width: 100%;
+  text-align: left;
   // line-height: normal;
   .el-main {
     padding: 0px;

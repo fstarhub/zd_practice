@@ -9,6 +9,8 @@ import { createApp } from 'vue'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import 'dayjs/locale/zh-cn'
+import locale from 'element-plus/lib/locale/lang/zh-cn'
 import './styles/elementReset.scss'
 
 import App from './App.vue'
@@ -25,7 +27,7 @@ import router from './router'
 
 createApp(App)
   // .use(ViewUI)
-  .use(ElementPlus)
+  .use(ElementPlus, { locale })
   .use(router)
   .use(store)
   .mount('#app')
