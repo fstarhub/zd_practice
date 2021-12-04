@@ -1,18 +1,21 @@
 import { createStore } from 'vuex'
 
+import storage from '../utils/storage'
 export default createStore({
   state: {
-    id: null,
-    user_name: '',
-    is_admin: '',
-    isLogin: false,
     userInfo: {
-      id: null,
-      user_name: '',
-      is_admin: ''
+      id: storage.get('id') ? storage.get('id') : '',
+      user_name: storage.get('userName') ? storage.get('userName') : '',
+      is_admin: storage.get('isAdmin') ? storage.get('isAdmin') : ''
+      // id: '',
+      // user_name: '',
+      // is_admin: null
     },
+    // token: 'shuai',
+    token: storage.getToken(),
+    isLogin: false,
     isShowLoading: false, // 全局 loading
-    token: 'shuai',
+    
     // 左侧菜单栏数据
     menuItems: [
       {
@@ -149,18 +152,26 @@ export default createStore({
   },
   mutations: {
     setLogin(state, payload) {
-      state.id = payload.id
-      state.user_name = payload.userInfo.user_name
-      state.is_admin = payload.userInfo.is_admin
-      state.isLogin = true
+      state.userInfo.id = payload.userInfo.id
+      state.userInfo.user_name = payload.userInfo.user_name
+      state.userInfo.is_admin = payload.userInfo.is_admin
       state.token = payload.token
+
+      storage.setToken(payload.token)
+      storage.set('id', payload.userInfo.id)
+      storage.set('userName', payload.userInfo.user_name)
+      storage.set('isAdmin', payload.userInfo.is_admin)
     },
     setLogout(state, payload) {
-      state.id = null
-      state.user_name = ''
-      state.is_admin = ''
-      state.isLogin = false
+      state.userInfo.id = ''
+      state.userInfo.user_name = ''
+      state.userInfo.is_admin = ''
       state.token = ''
+
+      storage.setToken('')
+      storage.set('id', '')
+      storage.set('userName', '')
+      storage.set('isAdmin', '')
     },
 
     setMenus(state, items) {

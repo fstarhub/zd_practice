@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2021-11-01 15:34:13
  * @LastEditors: fengshuai
- * @LastEditTime: 2021-12-03 09:09:23
+ * @LastEditTime: 2021-12-04 09:52:58
 -->
 
 <template>
@@ -14,10 +14,10 @@
   </el-container> -->
   <div class="container">
     <div class="loginContainer">
-      <img src="../../assets/imgs/logo.webp" alt="呀码头">
+      <img src="../../assets/imgs/logo.webp" alt="洋码头">
     </div>
     <div class="userTitle">
-      <span class="userName">你好，{{ store.state.user_name }}</span>, 欢迎回来哦！今天是 <u class="loginTime">{{ time }}</u>
+      <span>你好，</span><span class="userName">{{ store.state.userInfo.user_name }}</span>, 欢迎回来哦！今天是 <u class="loginTime">{{ time }}</u>
     </div>
     <div class="titleSetting">
       <el-dropdown>
@@ -55,7 +55,7 @@ export default {
     const time = ref()
 
     onMounted(() => {
-      time.value = moment(new Date()).format('YYYY-MM-DD')
+      time.value = moment(new Date()).format('YYYY年MM月DD')
       // console.log(store, 'store')
     })
 
@@ -66,7 +66,7 @@ export default {
       alert('我的信息')
     }
     const resetPassword = () => {
-      alert('修改密码')
+      alert(store.state.token)
     }
     const loginOut = () => {
       ElMessageBox.confirm(
@@ -79,13 +79,15 @@ export default {
         }
       )
         .then(() => {
-          localStorage.setItem('token', '')
-          store.commit('setLogout', '')
           router.push({
             path: '/',
             query: {
               name: '退出登录'
             }
+          })
+          ElMessage({
+            type: 'info',
+            message: '您已退出系统'
           })
         })
         .catch(() => {
@@ -95,6 +97,12 @@ export default {
           })
         })
     }
+
+    onBeforeRouteLeave((to, from, next) => {
+      console.log('路由导航-退出登录')
+      store.commit('setLogout', '')
+      next()
+    })
 
     return { store, time, handleClick, myInfo, resetPassword, loginOut }
   },

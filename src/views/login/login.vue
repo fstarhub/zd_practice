@@ -13,7 +13,7 @@
         <el-row :gutter="20" class="colClass">
           <el-col :span="7" :offset="5">
             <div class="grid-content bg-left">
-              <p class="welcomeTitle">欢迎登陆呀码头商城</p>
+              <p class="welcomeTitle">欢迎登陆洋码头商城</p>
               <el-calendar v-model="calendarValue" class="calendar" />
               <!-- <el-calendar v-model="calendarValue">
                 <template #dateCell="{ data }">
