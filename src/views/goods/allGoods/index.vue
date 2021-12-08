@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-main>
-      <el-form :inline="true" :model="formInline" class="demo-form-inline">
+      <!-- <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item label="商品名称">
           <el-input v-model="formInline.user" placeholder="请输入商品名称"></el-input>
         </el-form-item>
@@ -14,16 +14,25 @@
         <el-form-item>
           <el-button type="primary" @click="onSubmit">查询</el-button>
         </el-form-item>
-      </el-form>
+      </el-form> -->
       <el-table :data="tableData" border style="width: 100%" fit :header-cell-style="{'text-align': 'center'}">
         <el-table-column type="index" width="50" align="center" />        
         <el-table-column prop="goods_name" label="商品名称" />
         <el-table-column prop="id" label="商品编号" align="right" />
         <el-table-column prop="goods_price" label="商品价格(yua)" align="right" />
         <el-table-column prop="goods_num" label="剩余数量" align="right" />
-        <el-table-column prop="createdAt" label="上架时间" align="center" />
-        <el-table-column prop="updatedAt" label="更新时间" align="center" />
-        <el-table-column prop="deletedAt" label="是否下架" align="center" />
+        <el-table-column prop="createdAt" label="上架时间" :formatter="formatTime" align="center" />
+        <el-table-column prop="updatedAt" label="更新时间" :formatter="formatTime" align="center" />
+        <el-table-column prop="deletedAt" label="商品状态" :formatter="formatDel" align="center" />
+        <el-table-column label="操作" align="center">
+          <template #default="scope">
+            <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <el-pagination
         :current-page="currentPage"
@@ -39,12 +48,14 @@
   </el-container>
 </template>
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 
 import { ElMessageBox, ElMessage } from 'element-plus'
 import goodsApi from '@/api/goods.js'
+
+import moment from 'moment'
 export default {
-  name: 'PublishGoods',
+  name: 'AllGoods',
   setup(props) {
     const formInline = reactive({
       user: '',
@@ -55,6 +66,9 @@ export default {
     const pageSize = ref(10)
     const total = ref(0)
 
+    onMounted(() => {
+      onSubmit()
+    })
     const onSubmit = async() => {
       const param = {
         pageNum: currentPage.value,
@@ -84,7 +98,59 @@ export default {
       currentPage.value = val
       onSubmit()
     }
-    return { formInline, tableData, currentPage, pageSize, total, onSubmit, handleSizeChange, handleCurrentChange }
+
+    const formatTime = (row, column, cellValue, index) => {
+      // console.log(column, 'column')
+      if (column.property) {
+        return moment(row[column.property]).format('YYYY-MM-DD')
+      }
+    }
+
+    const formatDel = (row, column, cellValue, index) => {
+      if (row.deletedAt) {
+        return '已下架'
+      } else {
+        return '上架中'
+      }
+    }
+
+    const handleEdit = (index, row) => {
+      
+    }
+
+    const handleDelete = (index, row) => {
+      ElMessageBox.confirm(
+        '确认删除当前商品吗吗？',
+        '提示',
+        {
+          confirmButtonText: '是',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }
+      )
+        .then(async() => {
+          const res = await goodsApi.delGoods(row.id)
+          if (res.message === '删除商品成功') {
+            ElMessage({
+              type: 'success',
+              message: res.message
+            })
+            onSubmit()
+          } else {
+            ElMessage({
+              type: 'warning',
+              message: res.message
+            })
+          }
+        })
+        .catch(() => {
+          ElMessage({
+            type: 'info',
+            message: '已取消'
+          })
+        }) 
+    }
+    return { formInline, tableData, currentPage, pageSize, total, onSubmit, handleSizeChange, handleCurrentChange, formatTime, formatDel, handleEdit, handleDelete }
   },
   data() {
     return {

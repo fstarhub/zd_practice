@@ -29,19 +29,19 @@
             <el-icon><location /></el-icon>
             <span>商品</span>
           </template>
-          <el-menu-item index="1-1" @click="PublishPageMenu">已发布商品</el-menu-item>
-          <el-menu-item index="1-2">未发布</el-menu-item>
-          <el-menu-item index="1-3">发布设置</el-menu-item>
-          <el-menu-item index="1-4">发布提醒</el-menu-item>
+          <el-menu-item index="1-1" @click="PublishPageMenu">所有商品</el-menu-item>
+          <el-menu-item index="1-2" @click="UploadPageMenu">上传商品</el-menu-item>
+          <el-menu-item index="1-3">商品发布</el-menu-item>
+          <el-menu-item index="1-4">商品上架下架</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2">
           <template #title>
             <el-icon><icon-menu /></el-icon>
-            <span>我的商品</span>
+            <span>与我相关</span>
           </template>
-          <el-menu-item index="2-1">商品1</el-menu-item>
-          <el-menu-item index="2-2">商品2</el-menu-item>
-          <el-menu-item index="2-3">商品3</el-menu-item>
+          <el-menu-item index="2-1">收获地址</el-menu-item>
+          <el-menu-item index="2-2">订单信息</el-menu-item>
+          <!-- <el-menu-item index="2-3">商品3</el-menu-item> -->
         </el-sub-menu>
       </el-menu>
     </el-main>
@@ -77,14 +77,20 @@ export default {
     }
 
     const PublishPageMenu = () => {
-      // if (router)
       router.push({
-        path: '/basicLayout/publishGoods',
-        query: 'aaa'
+        path: '/basicLayout/allGoods',
+        query: 'publish'
       })
     }
 
-    return { isCollapse, handleOpen, handleClose, PublishPageMenu, goHomePage }
+    const UploadPageMenu = () => {
+      router.push({
+        path: '/basicLayout/uploadGoods',
+        query: 'upload'
+      })
+    }
+
+    return { isCollapse, handleOpen, handleClose, PublishPageMenu, goHomePage, UploadPageMenu }
   },
   data() {
     return {

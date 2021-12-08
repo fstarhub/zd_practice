@@ -54,7 +54,7 @@
       
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="modifyPWDCancel = false">取 消</el-button>
+          <el-button @click="modifyPWDCancel">取 消</el-button>
           <el-button type="primary" @click="modifyPWDConfirem">确 定</el-button>
         </span>
       </template>
@@ -109,7 +109,7 @@ export default {
     }
     const modifyPWDConfirem = () => {
       ElMessageBox.confirm(
-        '确认修改当前账号的密码吗：修改后将重新登录',
+        '确认修改当前账号的密码吗？修改后将重新登录',
         '提示',
         {
           confirmButtonText: '是',
