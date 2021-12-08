@@ -15,6 +15,13 @@ export default class userApi {
       data: data
     })
   }
+  static modifyPassword(data) {
+    return request({
+      url: '/users/',
+      method: 'patch',
+      data: data
+    })
+  }
 
   static test() {
     console.log('ceshi')

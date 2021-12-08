@@ -26,7 +26,7 @@
         <el-table-column prop="deletedAt" label="是否下架" align="center" />
       </el-table>
       <el-pagination
-        :currentPage="currentPage"
+        :current-page="currentPage"
         :page-sizes="[10, 20, 30, 40]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"

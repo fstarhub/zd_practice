@@ -33,16 +33,44 @@
         </template>
       </el-dropdown>
     </div>
+
+    <el-dialog v-model="personDialogVisible" title="个人信息" width="30%" center>
+      <!-- <span>您的账号在{{ 2020-11-11/ }}号注册，目前是可用状态！</span> -->
+      <span>您的账号在 2020-11-11 号注册，目前是可用状态！</span>
+      <template #footer>
+        <span class="dialog-footer">
+          <!-- <el-button @click="personDialogVisible = false">Cancel</el-button> -->
+          <el-button type="primary" @click="personDialogVisible = false">确 定</el-button>
+        </span>
+      </template>
+    </el-dialog>
+
+    <el-dialog v-model="modifyPWDDialogVisible" title="个人信息" width="30%" center>
+      <el-form ref="modifyformRef" :model="modifyform" label-width="120px">
+        <el-form-item prop="password" label="请输入新密码：">
+          <el-input v-model="modifyform.password"></el-input>
+        </el-form-item>
+      </el-form>
+      
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="modifyPWDCancel = false">取 消</el-button>
+          <el-button type="primary" @click="modifyPWDConfirem">确 定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
 import moment from 'moment'
 import { ArrowDown } from '@element-plus/icons'
 import { ElMessageBox, ElMessage } from 'element-plus'
+
+import userApi from '@/api/user.js'
 export default {
   name: 'Header',
   components: {
@@ -59,14 +87,60 @@ export default {
       // console.log(store, 'store')
     })
 
+    const personDialogVisible = ref(false)
+    const modifyPWDDialogVisible = ref(false)
+    const modifyform = reactive({
+      password: ''
+    })
+
     const handleClick = () => {
       alert('button click')
     }
     const myInfo = () => {
-      alert('我的信息')
+      personDialogVisible.value = true
     }
     const resetPassword = () => {
-      alert(store.state.token)
+      // alert(store.state.token)
+      modifyPWDDialogVisible.value = true
+    }
+    const modifyPWDCancel = () => {
+      modifyPWDDialogVisible.value = false
+      modifyform.password = ''
+    }
+    const modifyPWDConfirem = () => {
+      ElMessageBox.confirm(
+        '确认修改当前账号的密码吗：修改后将重新登录',
+        '提示',
+        {
+          confirmButtonText: '是',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }
+      )
+        .then(async() => {
+          const res = await userApi.modifyPassword({ password: modifyform.password })
+          console.log(res, 'ewewewe')
+          if (res.message === '修改密码成功') {
+            router.push({
+              path: '/',
+              query: {
+                name: '已退出登录'
+              }
+            })
+            ElMessage({
+              type: 'info',
+              message: '您已退出系统'
+            })
+          }
+        })
+        .catch(() => {
+          modifyPWDDialogVisible.value = false
+          modifyform.password = ''
+          ElMessage({
+            type: 'info',
+            message: '已取消'
+          })
+        })     
     }
     const loginOut = () => {
       ElMessageBox.confirm(
@@ -104,7 +178,7 @@ export default {
       next()
     })
 
-    return { store, time, handleClick, myInfo, resetPassword, loginOut }
+    return { store, time, personDialogVisible, modifyPWDDialogVisible, modifyform, handleClick, myInfo, resetPassword, loginOut, modifyPWDConfirem, modifyPWDCancel }
   },
   data() {
     return {
