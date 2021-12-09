@@ -29,10 +29,10 @@
             <el-icon><location /></el-icon>
             <span>商品</span>
           </template>
-          <el-menu-item index="1-1" @click="PublishPageMenu">所有商品</el-menu-item>
-          <el-menu-item index="1-2" @click="UploadPageMenu">上传商品</el-menu-item>
-          <el-menu-item index="1-3">商品发布</el-menu-item>
-          <el-menu-item index="1-4">商品上架下架</el-menu-item>
+          <el-menu-item index="1-1" @click="allGoodsPageMenu">所有商品</el-menu-item>
+          <!-- <el-menu-item index="1-2" @click="UploadPageMenu">上传商品</el-menu-item> -->
+          <el-menu-item index="1-3" @click="publishPageMenu">商品发布</el-menu-item>
+          <el-menu-item index="1-4" @click="maintainPageMenu">商品维护</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2">
           <template #title>
@@ -76,7 +76,7 @@ export default {
       })
     }
 
-    const PublishPageMenu = () => {
+    const allGoodsPageMenu = () => {
       router.push({
         path: '/basicLayout/allGoods',
         query: 'publish'
@@ -90,7 +90,21 @@ export default {
       })
     }
 
-    return { isCollapse, handleOpen, handleClose, PublishPageMenu, goHomePage, UploadPageMenu }
+    const publishPageMenu = () => {
+      router.push({
+        path: '/basicLayout/publishGoods',
+        query: 'publish'
+      })
+    }
+
+    const maintainPageMenu = () => {
+      // router.push({
+      //   path: '/basicLayout/publishGoods',
+      //   query: 'publish'
+      // })
+    }
+
+    return { isCollapse, handleOpen, handleClose, allGoodsPageMenu, goHomePage, UploadPageMenu, publishPageMenu, maintainPageMenu }
   },
   data() {
     return {

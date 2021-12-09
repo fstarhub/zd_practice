@@ -22,6 +22,10 @@ const userRoute = [
       {
         path: 'uploadGoods',
         component: () => import('@/views/goods/uploadGoods/index')
+      },
+      {
+        path: 'publishGoods',
+        component: () => import('@/views/goods/publishGoods/index')
       }
     ]
   },

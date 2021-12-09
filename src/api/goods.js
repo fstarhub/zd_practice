@@ -17,4 +17,13 @@ export default class goodsApi {
       method: 'delete'
     })
   }
+
+  // 发布商品
+  static publishItemGoods(data) {
+    return request({
+      url: '/goods/',
+      method: 'post',
+      data: data
+    })
+  }
 }

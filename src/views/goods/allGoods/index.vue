@@ -16,7 +16,7 @@
         </el-form-item>
       </el-form> -->
       <el-table :data="tableData" border style="width: 100%" fit :header-cell-style="{'text-align': 'center'}">
-        <el-table-column type="index" width="50" align="center" />        
+        <el-table-column type="index" label="序号" width="50" align="center" />        
         <el-table-column prop="goods_name" label="商品名称" />
         <el-table-column prop="id" label="商品编号" align="right" />
         <el-table-column prop="goods_price" label="商品价格(yua)" align="right" />
@@ -27,10 +27,7 @@
         <el-table-column label="操作" align="center">
           <template #default="scope">
             <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除商品</el-button>
           </template>
         </el-table-column>
       </el-table>

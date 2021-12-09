@@ -9,7 +9,7 @@
   <el-container>
     <el-main>
       <el-row>
-        <el-col :span="6">
+        <el-col>
           <el-upload
             ref="uploadRef"
             class="upload-demo"
@@ -28,7 +28,7 @@
               @click="submitUpload">上传至服务</el-button>
             <template #tip>
               <div class="el-upload__tip">
-                文件格式为jpeg/png，大小不能超过500kb
+                文件格式为jpg/png，大小不能超过500kb
               </div>
             </template>
           </el-upload>
@@ -38,19 +38,38 @@
   </el-container>
 </template>
 <script>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import { ElMessageBox, ElMessage } from 'element-plus'
 export default {
   name: 'UploadGoods',
-  setup() {
+  props: {
+    rowItem: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
+    rowIndex: {
+      type: Number,
+      default: null
+    }
+  },
+  setup(props, context) {
     const uploadRef = ref()
     const uploadURL = ref(process.env.VUE_APP_BASE_API + '/goods/upload')
+    const goods_img = ref(null)
+
+    // onMounted(() => {
+    //   console.log(props.rowItem, 'props')
+    // })
     const submitUpload = () => {
       uploadRef.value.submit()
     }
     const uploadSuccess = (response, file, fileList) => {
       // console.log(response, file, fileList, 'response')
+      goods_img.value = response.result.goods_img
+      context.emit('send-goodsImg', props.rowIndex, response.result.goods_img)
       uploadRef.value.clearFiles()
       ElMessage({
         type: 'success',
@@ -65,7 +84,7 @@ export default {
       })
     }
 
-    return { uploadRef, uploadURL, submitUpload, uploadSuccess, uploadError }
+    return { uploadRef, uploadURL, submitUpload, uploadSuccess, uploadError, goods_img }
   },
   data() {
     return {
