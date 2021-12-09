@@ -98,10 +98,10 @@ export default {
     }
 
     const maintainPageMenu = () => {
-      // router.push({
-      //   path: '/basicLayout/publishGoods',
-      //   query: 'publish'
-      // })
+      router.push({
+        path: '/basicLayout/maintainGoods',
+        query: 'maintain'
+      })
     }
 
     return { isCollapse, handleOpen, handleClose, allGoodsPageMenu, goHomePage, UploadPageMenu, publishPageMenu, maintainPageMenu }

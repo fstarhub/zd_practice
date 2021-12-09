@@ -26,4 +26,29 @@ export default class goodsApi {
       data: data
     })
   }
+
+  // 下架商品
+  static offShelf(id) {
+    return request({
+      url: '/goods/' + id + '/off',
+      method: 'post'
+    })
+  }
+
+  // 上架商品
+  static onShelf(id) {
+    return request({
+      url: '/goods/' + id + '/on',
+      method: 'post'
+    })
+  }
+
+  // 更新商品
+  static updateOne(id, param) {
+    return request({
+      url: '/goods/' + id,
+      method: 'put',
+      data: param
+    })
+  }
 }

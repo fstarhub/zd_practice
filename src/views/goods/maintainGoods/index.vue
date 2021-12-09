@@ -17,18 +17,34 @@
       </el-form> -->
       <el-table :data="tableData" border style="width: 100%" fit :header-cell-style="{'text-align': 'center'}">
         <el-table-column type="index" label="序号" width="50" align="center" />        
-        <el-table-column prop="goods_name" label="商品名称" />
+        <!-- <el-table-column prop="goods_name" label="商品名称" /> -->
+        <el-table-column label="商品名称">
+          <template #default="scope">
+            <el-input v-model="scope.row.goods_name"></el-input>
+          </template>
+        </el-table-column>
         <el-table-column prop="id" label="商品编号" align="right" />
-        <el-table-column prop="goods_price" label="商品价格(元)" align="right" />
-        <el-table-column prop="goods_num" label="剩余数量" align="right" />
+        <!-- <el-table-column prop="goods_price" label="商品价格(元)" align="right" /> -->
+        <el-table-column label="商品价格">
+          <template #default="scope">
+            <el-input v-model="scope.row.goods_price"></el-input>
+          </template>
+        </el-table-column>
+        <!-- <el-table-column prop="goods_num" label="剩余数量" align="right" /> -->
+        <el-table-column label="商品数量">
+          <template #default="scope">
+            <el-input v-model="scope.row.goods_num"></el-input>
+          </template>
+        </el-table-column>
         <el-table-column prop="createdAt" label="上架时间" :formatter="formatTime" align="center" />
         <el-table-column prop="updatedAt" label="更新时间" :formatter="formatTime" align="center" />
         <el-table-column prop="deletedAt" label="商品状态" :formatter="formatDel" align="center" />
-        <el-table-column label="操作" min-width="150" align="center">
+        <el-table-column label="操作" align="center">
           <template #default="scope">
-            <el-button size="mini" type="warning" :disabled="scope.row.deletedAt ? true : false" @click="offShelfGoods(scope.$index, scope.row)">下架</el-button>
+            <!-- <el-button size="mini" type="warning" :disabled="scope.row.deletedAt ? true : false" @click="offShelfGoods(scope.$index, scope.row)">下架</el-button>
             <el-button size="mini" type="primary" :disabled="!scope.row.deletedAt" @click="onShelfGoods(scope.$index, scope.row)">上架</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除商品</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除商品</el-button> -->
+            <el-button size="mini" type="primary" @click="updateGoods(scope.$index, scope.row)">更新商品</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -147,7 +163,7 @@ export default {
 
     const onShelfGoods = (index, row) => {
       ElMessageBox.confirm(
-        '确认下架当前商品吗吗？',
+        '确认下架当前商品吗？',
         '提示',
         {
           confirmButtonText: '是',
@@ -180,7 +196,7 @@ export default {
 
     const handleDelete = (index, row) => {
       ElMessageBox.confirm(
-        '确认删除当前商品吗吗？',
+        '确认删除当前商品吗？',
         '提示',
         {
           confirmButtonText: '是',
@@ -210,7 +226,48 @@ export default {
           })
         }) 
     }
-    return { formInline, tableData, currentPage, pageSize, total, onSubmit, handleSizeChange, handleCurrentChange, formatTime, formatDel, offShelfGoods, onShelfGoods, handleDelete }
+
+    const updateGoods = (index, row) => {
+      console.log('row', row)
+      ElMessageBox.confirm(
+        '确认更新当前商品吗？',
+        '提示',
+        {
+          confirmButtonText: '是',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }
+      )
+        .then(async() => {
+          const param = {
+            goods_name: row.goods_name,
+            goods_price: Number.parseFloat(row.goods_price),
+            goods_num: Number.parseFloat(row.goods_num),
+            goods_img: row.goods_img
+          }
+          const res = await goodsApi.updateOne(row.id, param)
+          if (res.message === '修改商品成功') {
+            ElMessage({
+              type: 'success',
+              message: res.message
+            })
+            onSubmit()
+          } else {
+            ElMessage({
+              type: 'warning',
+              message: res.message
+            })
+          }
+        })
+        .catch(() => {
+          ElMessage({
+            type: 'info',
+            message: '已取消'
+          })
+        }) 
+    }
+
+    return { formInline, tableData, currentPage, pageSize, total, onSubmit, handleSizeChange, handleCurrentChange, formatTime, formatDel, offShelfGoods, onShelfGoods, handleDelete, updateGoods }
   },
   data() {
     return {

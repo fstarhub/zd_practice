@@ -2,7 +2,7 @@
   <el-container>
     <el-main>
       <el-row>
-        <el-button size="mini" type="primary" @click="addOne">添加要发布的商品</el-button>
+        <el-button size="mini" type="primary" @click="addOne">添加发布商品</el-button>
       </el-row>
       <el-table :data="tableData" border style="width: 100%" fit :header-cell-style="{'text-align': 'center'}">
         <el-table-column type="index" width="50" label="序号" align="center" />        
