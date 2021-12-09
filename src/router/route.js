@@ -30,6 +30,18 @@ const userRoute = [
       {
         path: 'maintainGoods',
         component: () => import('@/views/goods/maintainGoods/index')
+      },
+      {
+        path: 'cart',
+        component: () => import('@/views/person/cart/cart')
+      },
+      {
+        path: 'order',
+        component: () => import('@/views/person/order/order')
+      },
+      {
+        path: 'address',
+        component: () => import('@/views/person/address/address')
       }
     ]
   },

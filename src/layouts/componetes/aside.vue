@@ -39,9 +39,9 @@
             <el-icon><icon-menu /></el-icon>
             <span>与我相关</span>
           </template>
-          <el-menu-item index="2-1">收获地址</el-menu-item>
-          <el-menu-item index="2-2">订单信息</el-menu-item>
-          <!-- <el-menu-item index="2-3">商品3</el-menu-item> -->
+          <el-menu-item index="2-1" @click="cartPageMenu">我的购物车</el-menu-item>
+          <el-menu-item index="2-2" @click="orderPageMenu">我的订单</el-menu-item>
+          <el-menu-item index="2-3" @click="adderssPageMenu">我的地址</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </el-main>
@@ -104,7 +104,28 @@ export default {
       })
     }
 
-    return { isCollapse, handleOpen, handleClose, allGoodsPageMenu, goHomePage, UploadPageMenu, publishPageMenu, maintainPageMenu }
+    const cartPageMenu = () => {
+      router.push({
+        path: '/basicLayout/cart',
+        query: 'cart'
+      })
+    }
+
+    const orderPageMenu = () => {
+      router.push({
+        path: '/basicLayout/order',
+        query: 'order'
+      })
+    }
+
+    const adderssPageMenu = () => {
+      router.push({
+        path: '/basicLayout/address',
+        query: 'address'
+      })
+    }
+
+    return { isCollapse, handleOpen, handleClose, allGoodsPageMenu, goHomePage, UploadPageMenu, publishPageMenu, maintainPageMenu, cartPageMenu, orderPageMenu, adderssPageMenu }
   },
   data() {
     return {
