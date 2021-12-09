@@ -1,7 +1,6 @@
 import request from '../utils/request'
 
 export default class goodsApi {
-
   // 查询所有商品
   static findAllGoods(data) {
     return request({

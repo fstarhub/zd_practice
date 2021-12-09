@@ -11,7 +11,7 @@
       <el-upload
         ref="uploadRef"
         class="upload-demo"
-        action="http://localhost:8000/goods/upload"
+        :action="uploadURL"
         :auto-upload="false"
       >
         <template #trigger>
@@ -38,11 +38,12 @@ export default {
   name: 'UploadGoods',
   setup() {
     const uploadRef = ref()
+    const uploadURL = ref(process.env.VUE_APP_BASE_API + '/goods/upload')
     const submitUpload = () => {
       uploadRef.value.submit()
     }
 
-    return { uploadRef, submitUpload }
+    return { uploadRef, uploadURL, submitUpload }
   },
   data() {
     return {
