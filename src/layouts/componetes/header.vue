@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2021-11-01 15:34:13
  * @LastEditors: fengshuai
- * @LastEditTime: 2021-12-04 09:52:58
+ * @LastEditTime: 2022-01-13 15:07:49
 -->
 
 <template>
@@ -14,7 +14,7 @@
   </el-container> -->
   <div class="container">
     <div class="loginContainer">
-      <img src="../../assets/imgs/logo.webp" alt="洋码头">
+      <img src="../../assets/imgs/newLogo.png" alt="洋码头">
     </div>
     <div class="userTitle">
       <span>你好，</span><span class="userName">{{ store.state.userInfo.user_name }}</span>, 欢迎回来哦！今天是 <u class="loginTime">{{ time }}</u>
