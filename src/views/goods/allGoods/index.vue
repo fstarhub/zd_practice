@@ -189,7 +189,7 @@ export default {
         }
       )
         .then(async() => {
-          const res = await goodsApi.delGoods(row.id)
+          const res = await goodsApi.forceDelGoods(row.id)
           if (res.message === '删除商品成功') {
             ElMessage({
               type: 'success',

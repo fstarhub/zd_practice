@@ -18,6 +18,14 @@ export default class goodsApi {
     })
   }
 
+  // 删除商品（硬删除）
+  static forceDelGoods(id) {
+    return request({
+      url: '/goods/' + id + '/delete',
+      method: 'delete'
+    })
+  }
+
   // 发布商品
   static publishItemGoods(data) {
     return request({
