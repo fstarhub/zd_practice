@@ -20,16 +20,22 @@ const menus = [
         key: '2-1'
       },
       {
+        title: '商品上传',
+        path: '/basicLayout/uploadGoods',
+        query: '商品上传',
+        key: '2-2'
+      },
+      {
         title: '商品发布',
         path: '/basicLayout/publishGoods',
         query: '商品发布',
-        key: '2-2'
+        key: '2-3'
       },
       {
         title: '商品维护',
         path: '/basicLayout/maintainGoods',
         query: '商品维护',
-        key: '2-3'
+        key: '2-4'
       }
     ]
   },
