@@ -25,7 +25,7 @@
           <span>首页</span>
         </el-menu-item>
 
-        <el-sub-menu v-for="item in menus" :key="item.key" :index="index">
+        <el-sub-menu v-for="item in menus" :key="item.key" :index="item.key">
           <template #title>
             <!-- <el-icon>{{ item.icon }}</el-icon> -->
             <span>{{ item.title }}</span>
