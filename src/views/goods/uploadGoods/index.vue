@@ -9,36 +9,55 @@
   <el-container>
     <el-main>
       <el-row>
-        <el-col :span="6">
-          <el-upload
-            ref="uploadRef"
-            class="upload-demo"
-            :action="uploadURL"
-            :auto-upload="false"
-            :on-success="uploadSuccess"
-            :on-error="uploadError"
-          >
-            <template #trigger>
-              <el-button size="small" type="primary">选择文件</el-button>
-            </template>
-            <el-button
-              style="margin-left: 10px"
-              size="small"
-              type="success"
-              @click="submitUpload">上传至服务</el-button>
-            <template #tip>
-              <div class="el-upload__tip">
-                文件格式为jpeg/png，大小不能超过500kb
-              </div>
-            </template>
-          </el-upload>
+        <el-col :span="6" :offset="9">
+          <el-form :model="goodsForm" label-width="120px">
+            <el-form-item label="商品名称：">
+              <el-input v-model="goodsForm.goodsName" />
+            </el-form-item>
+            <el-form-item label="商品价格：">
+              <el-input v-model="goodsForm.goodsPrice" />
+            </el-form-item>
+            <el-form-item label="商品库存：">
+              <el-input v-model="goodsForm.goodsNum" />
+            </el-form-item>
+            <el-form-item label="商品图片：">
+              <el-upload
+                ref="uploadRef"
+                class="upload-demo"
+                :action="uploadURL"
+                :auto-upload="false"
+                :on-success="uploadSuccess"
+                :on-error="uploadError"
+                :data="goodsForm"
+              >
+                <template #trigger>
+                  <el-button size="small" type="primary">选择文件</el-button>
+                </template>
+                <!-- <el-button
+                  style="margin-left: 10px"
+                  size="small"
+                  type="success"
+                  @click="submitUpload">上传至服务</el-button> -->
+                <template #tip>
+                  <div class="el-upload__tip">
+                    文件格式为jpeg/png，大小不能超过500kb
+                  </div>
+                </template>
+                <el-button
+                  style="margin-left: 10px"
+                  size="small"
+                  type="success"
+                  @click="submitUpload">提交</el-button>
+              </el-upload>
+            </el-form-item>
+          </el-form>
         </el-col>
       </el-row>
     </el-main>
   </el-container>
 </template>
 <script>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 import { ElMessageBox, ElMessage } from 'element-plus'
 export default {
@@ -65,7 +84,13 @@ export default {
       })
     }
 
-    return { uploadRef, uploadURL, submitUpload, uploadSuccess, uploadError }
+    const goodsForm = reactive({
+      goodsName: '',
+      goodsPrice: '',
+      goodsNum: '',
+    })
+
+    return { uploadRef, uploadURL, goodsForm, submitUpload, uploadSuccess, uploadError }
   },
   data() {
     return {
