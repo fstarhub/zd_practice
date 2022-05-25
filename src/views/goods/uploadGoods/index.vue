@@ -12,13 +12,13 @@
         <el-col :span="6" :offset="9">
           <el-form :model="goodsForm" label-width="120px">
             <el-form-item label="商品名称：">
-              <el-input v-model="goodsForm.goodsName" />
+              <el-input v-model="goodsForm.goods_Name" />
             </el-form-item>
             <el-form-item label="商品价格：">
-              <el-input v-model="goodsForm.goodsPrice" />
+              <el-input v-model="goodsForm.goods_Price" />
             </el-form-item>
             <el-form-item label="商品库存：">
-              <el-input v-model="goodsForm.goodsNum" />
+              <el-input v-model="goodsForm.goods_Num" />
             </el-form-item>
             <el-form-item label="商品图片：">
               <el-upload
@@ -64,7 +64,8 @@ export default {
   name: 'UploadGoods',
   setup() {
     const uploadRef = ref()
-    const uploadURL = ref(process.env.VUE_APP_BASE_API + '/goods/upload')
+    // const uploadURL = ref(process.env.VUE_APP_BASE_API + '/goods/upload') // 跨域报错记得修改路径
+    const uploadURL = ref(window.location.origin + '/goods/upload') // 跨域报错记得修改路径
     const submitUpload = () => {
       uploadRef.value.submit()
     }
@@ -85,9 +86,9 @@ export default {
     }
 
     const goodsForm = reactive({
-      goodsName: '',
-      goodsPrice: '',
-      goodsNum: '',
+      goods_Name: '',
+      goods_Price: '',
+      goods_Num: '',
     })
 
     return { uploadRef, uploadURL, goodsForm, submitUpload, uploadSuccess, uploadError }

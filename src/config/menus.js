@@ -7,7 +7,7 @@ const menus = [
   //   key: '1'
   // },
   {
-    title: '商品',
+    title: '商品管理',
     path: '/basicLayout/allGoods',
     query: 'shangpin',
     key: '2',
@@ -19,12 +19,12 @@ const menus = [
         query: '所有商品',
         key: '2-1'
       },
-      {
-        title: '商品上传',
-        path: '/basicLayout/uploadGoods',
-        query: '商品上传',
-        key: '2-2'
-      },
+      // {
+      //   title: '商品上传',
+      //   path: '/basicLayout/uploadGoods',
+      //   query: '商品上传',
+      //   key: '2-2'
+      // },
       {
         title: '商品发布',
         path: '/basicLayout/publishGoods',

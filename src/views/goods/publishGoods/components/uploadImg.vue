@@ -57,7 +57,8 @@ export default {
   },
   setup(props, context) {
     const uploadRef = ref()
-    const uploadURL = ref(process.env.VUE_APP_BASE_API + '/goods/upload')
+    // const uploadURL = ref(process.env.VUE_APP_BASE_API + '/goods/upload')
+    const uploadURL = ref(window.location.origin + '/goods/upload') // 跨域报错记得修改路径
     const goods_img = ref(null)
 
     // onMounted(() => {
