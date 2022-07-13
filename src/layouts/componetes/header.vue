@@ -16,9 +16,16 @@
     <div class="loginContainer">
       <img src="../../assets/imgs/newLogo.png" alt="洋码头">
     </div>
-    <div class="userTitle">
+    <!-- <div class="userTitle">
       <span>你好，</span><span class="userName">{{ store.state.userInfo.user_name }}</span>, 欢迎回来哦！今天是 <u class="loginTime">{{ time }}</u>
-    </div>
+    </div> -->
+    <ul class="headMenu">
+      <li v-for="item in store.state.headMenu" :key="item.path">
+        <el-button class="menuItem" @click="goToMenu(item)">
+          {{item.title}}
+        </el-button>
+      </li>
+    </ul>
     <div class="titleSetting">
       <el-dropdown>
         <span class="el-dropdown-link">
@@ -84,7 +91,7 @@ export default {
 
     onMounted(() => {
       time.value = moment(new Date()).format('YYYY年MM月DD')
-      // console.log(store, 'store')
+      // console.log(store.state, 'store')
     })
 
     const personDialogVisible = ref(false)
@@ -178,7 +185,18 @@ export default {
       next()
     })
 
-    return { store, time, personDialogVisible, modifyPWDDialogVisible, modifyform, handleClick, myInfo, resetPassword, loginOut, modifyPWDConfirem, modifyPWDCancel }
+    const goToMenu = (itemMenu) => {
+      console.log(itemMenu);
+      router.push({
+        path: itemMenu.path,
+        // query: {
+        //   name: 'lisi'
+        // }
+      })
+      
+    }
+
+    return { store, time, personDialogVisible, modifyPWDDialogVisible, modifyform, handleClick, myInfo, resetPassword, loginOut, modifyPWDConfirem, modifyPWDCancel, goToMenu }
   },
   data() {
     return {
@@ -217,6 +235,13 @@ export default {
     .loginTime {
       color: fuchsia;
     }
+  }
+
+  .headMenu {
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .titleSetting {
     width: 100px;

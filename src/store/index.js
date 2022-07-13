@@ -1,6 +1,8 @@
 import { createStore } from 'vuex'
 
 import storage from '../utils/storage'
+
+import headMenu from '../config/headMenu'
 export default createStore({
   state: {
     userInfo: {
@@ -148,7 +150,8 @@ export default createStore({
         type: 'md-people', // icon类型
         text: '小组' // 文本内容
       }
-    ]
+    ],
+    headMenu
   },
   mutations: {
     setLogin(state, payload) {

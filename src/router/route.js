@@ -1,5 +1,5 @@
 
-import { basicLayout, blankLayout, loginView } from '../layouts/index'
+import { basicLayout, blankLayout, loginView, headLayout } from '../layouts/index'
 const userRoute = [
   { path: '/', redirect: '/login' },
   {
@@ -48,7 +48,31 @@ const userRoute = [
   {
     path: '/register',
     component: () => import('@/views/register/register')
-  }
+  },
+  {
+    title: '风险源管理',
+    path: '/fengXianYuanGuanLi',
+    component: headLayout,
+    redirect: '/fengXianYuanGuanLi/fengXian',
+    children: [
+      {
+        path: 'fengxian',
+        component: () => import('@/views/fengXianYuanGuanLi/index'),
+      }
+    ]
+  },
+  {
+    title: '应急保障',
+    path: '/yingJiBaoZhang',
+    component: headLayout,
+    redirect: '/yingJiBaoZhang/yingji',
+    children: [
+      {
+        path: 'yingji',
+        component: () => import('@/views/yingJiBaoZhang/index'),
+      }
+    ]
+  },
 ]
 
 export default userRoute
