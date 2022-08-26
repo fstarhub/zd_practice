@@ -52,6 +52,7 @@ export default {
 <style lang="scss" scoped>
 .el-row {
   width: 100%;
+  height: 101px;
   margin-bottom: 20px;
   &:last-child {
     margin-bottom: 0;

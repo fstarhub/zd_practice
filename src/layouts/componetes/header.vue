@@ -13,7 +13,7 @@
     </el-main>
   </el-container> -->
   <div class="container">
-    <div class="loginContainer">
+    <div class="loginContainer" @click="goHome">
       <img src="../../assets/imgs/newLogo.png" alt="洋码头">
     </div>
     <!-- <div class="userTitle">
@@ -196,7 +196,13 @@ export default {
       
     }
 
-    return { store, time, personDialogVisible, modifyPWDDialogVisible, modifyform, handleClick, myInfo, resetPassword, loginOut, modifyPWDConfirem, modifyPWDCancel, goToMenu }
+    const goHome = () => {
+      router.replace({
+        path: '/basicLayout',
+      })
+    }
+
+    return { store, time, personDialogVisible, modifyPWDDialogVisible, modifyform, handleClick, myInfo, resetPassword, loginOut, modifyPWDConfirem, modifyPWDCancel, goToMenu, goHome }
   },
   data() {
     return {
@@ -219,6 +225,7 @@ export default {
   align-content: center;
   .loginContainer {
     width: 200px;
+    cursor: pointer;
     // background: lawngreen;
     img {
       width: 200px;
