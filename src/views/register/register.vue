@@ -2,8 +2,8 @@
  * @Description: 
  * @Autor: fengshuai
  * @Date: 2021-10-29 09:39:13
- * @LastEditors: fengshuai
- * @LastEditTime: 2021-11-17 11:03:11
+ * @LastEditors: feng
+ * @LastEditTime: 2023-08-18 15:15:27
 -->
 <template>
   <!-- <el-container style="background: pink"> -->
@@ -13,7 +13,7 @@
       <el-row :gutter="20" class="registerClass">
         <el-col v-if="needRegisterStatus" :span="8" :offset="8">
           <div class="grid-content bg-right">
-            <p class="welcome">欢迎注册呀码头商城</p>
+            <p class="welcome">欢迎注册洋码头商城</p>
             <el-form
               ref="loginformRef"
               class="loginFormClass"
@@ -94,7 +94,7 @@
         </el-col>
         <el-col v-else :span="8" :offset="8">
           <div class="grid-content bg-right registerSuccess">
-            <p class="welcome">恭喜您成为呀码头小主</p>
+            <p class="welcome">恭喜您成为洋码头小主</p>
             <el-button class="goRegistBtn" type="primary" @click="goToLogin">去登陆</el-button>
           </div>
         </el-col>
