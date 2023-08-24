@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fengshuai
  * @Date: 2021-11-01 15:34:13
- * @LastEditors: fengshuai
- * @LastEditTime: 2022-01-13 15:07:49
+ * @LastEditors: feng
+ * @LastEditTime: 2023-08-24 14:16:29
 -->
 
 <template>
@@ -22,7 +22,7 @@
     <ul class="headMenu">
       <li v-for="item in store.state.headMenu" :key="item.path">
         <el-button class="menuItem" @click="goToMenu(item)">
-          {{item.title}}
+          {{ item.title }}
         </el-button>
       </li>
     </ul>
@@ -43,7 +43,10 @@
 
     <el-dialog v-model="personDialogVisible" title="个人信息" width="30%" center>
       <!-- <span>您的账号在{{ 2020-11-11/ }}号注册，目前是可用状态！</span> -->
-      <span>您的账号在 2020-11-11 号注册，目前是可用状态！</span>
+      <div class="contentB">
+        <p>今天是 {{ time }}</p>
+        <span>您的账号在 {{ createTime }} 注册，至今已经{{ userLiveDays }}天，目前是可用状态！</span>
+      </div>
       <template #footer>
         <span class="dialog-footer">
           <!-- <el-button @click="personDialogVisible = false">Cancel</el-button> -->
@@ -69,7 +72,7 @@
   </div>
 </template>
 <script>
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted, reactive, computed, watchEffect } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
@@ -87,12 +90,9 @@ export default {
     const store = useStore()
     const router = useRouter()
 
-    const time = ref()
-
-    onMounted(() => {
-      time.value = moment(new Date()).format('YYYY年MM月DD')
-      // console.log(store.state, 'store')
-    })
+    const time = ref(moment(new Date()).format('YYYY年MM月DD日 HH:mm:ss'))
+    const createTime = ref()
+    const userLiveDays = ref()
 
     const personDialogVisible = ref(false)
     const modifyPWDDialogVisible = ref(false)
@@ -100,11 +100,33 @@ export default {
       password: ''
     })
 
+    onMounted(() => {
+      // time.value = moment(new Date()).format('YYYY年MM月DD')
+      // console.log(store.state, 'store')
+    })
+
+    const liveDays0 = computed(() => {
+      // return createTime.diff(time, 'day')
+      return '测试'
+    })
+    // watchEffect(() => {
+    //   if (createTime) {
+    //     userLiveDays = 4
+    //   }
+    // })
+
     const handleClick = () => {
       alert('button click')
     }
     const myInfo = () => {
       personDialogVisible.value = true
+      // time.value = moment(new Date()).format('YYYY年MM月DD日 HH:mm:ss')
+      userApi.getCurrentUser({ user_name: store.state.userInfo.user_name }).then(res => {
+        if (res.code === 0) {
+          createTime.value = moment(res.result.createdAt).format('YYYY年MM月DD日 HH:mm:ss')
+          userLiveDays.value = moment().diff(moment(res.result.createdAt), 'day')
+        }
+      })
     }
     const resetPassword = () => {
       // alert(store.state.token)
@@ -186,14 +208,13 @@ export default {
     })
 
     const goToMenu = (itemMenu) => {
-      console.log(itemMenu);
+      // console.log(itemMenu)
       router.push({
         path: itemMenu.path,
         // query: {
         //   name: 'lisi'
         // }
       })
-      
     }
 
     const goHome = () => {
@@ -202,7 +223,7 @@ export default {
       })
     }
 
-    return { store, time, personDialogVisible, modifyPWDDialogVisible, modifyform, handleClick, myInfo, resetPassword, loginOut, modifyPWDConfirem, modifyPWDCancel, goToMenu, goHome }
+    return { store, time, createTime, liveDays0, userLiveDays, personDialogVisible, modifyPWDDialogVisible, modifyform, handleClick, myInfo, resetPassword, loginOut, modifyPWDConfirem, modifyPWDCancel, goToMenu, goHome }
   },
   data() {
     return {
