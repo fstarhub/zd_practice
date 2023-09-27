@@ -2,8 +2,8 @@
  * @Description: 
  * @Autor: fengshuai
  * @Date: 2021-10-19 09:40:21
- * @LastEditors: fengshuai
- * @LastEditTime: 2021-11-17 16:22:07
+ * @LastEditors: feng
+ * @LastEditTime: 2023-09-27 16:23:13
  */
 import { createApp } from 'vue'
 
@@ -22,6 +22,7 @@ import App from './App.vue'
 
 import store from './store'
 import router from './router'
+// import dict from './utils/dict'
 
 // createApp(App).mount('#app')
 
@@ -30,6 +31,7 @@ createApp(App)
   .use(ElementPlus, { locale })
   .use(router)
   .use(store)
+  // .use(dict)
   .mount('#app')
 
 // const app = createApp(App)
