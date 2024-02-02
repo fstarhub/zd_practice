@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2024-02-01 16:17:21
  * @LastEditors: fengshuai
- * @LastEditTime: 2024-02-02 11:11:55
+ * @LastEditTime: 2024-02-02 14:11:34
 -->
 <template>
   <div class="container">
@@ -13,30 +13,22 @@
   </div>
 </template>
 <script setup>
-import { reactive, onMounted } from 'vue'
+import { reactive } from 'vue'
 
 const sourceObj = reactive({
   activeSource: '',
-  sourceList: [],
-  activeId: null
-})
-const getSourceList = () => {
-  sourceObj.sourceList = [
-    { id: 1, name: '直播间', src: 'http://v.ouchn.cn/live/v/Dx8nxE1H' },
+  sourceList: [
+    { id: 1, name: '直播间', src: 'https://v.ouchn.cn/live/v/Dx8nxE1H' },
     { id: 2, name: '哔哩哔哩', src: 'https://www.bilibili.com/' },
     { id: 3, name: '爱奇艺', src: 'https://www.iqiyi.com/' },
     { id: 6, name: '备选直播间', src: 'https://live.polyv.cn/watch/4627591' },
-  ]
-  // const roundNum = Math.floor(Math.random() * 5)
-  // sourceObj.activeSource = sourceObj.sourceList[roundNum].src
-}
+  ],
+  activeId: null
+})
 const changeChannel = (item) => {
   sourceObj.activeId = item.id
   window.open(item.src, '_blank')
 }
-onMounted(() => {
-  getSourceList()
-})
 </script>
 <style lang="scss" scoped>
 .container {

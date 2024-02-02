@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2024-02-01 14:17:43
  * @LastEditors: fengshuai
- * @LastEditTime: 2024-02-02 13:54:51
+ * @LastEditTime: 2024-02-02 14:13:53
 -->
 <template>
   <div class="container">
@@ -29,15 +29,14 @@ import { reactive, onMounted } from 'vue'
 import { ArrowDown } from '@element-plus/icons'
 
 const sourceObj = reactive({
-  activeSource: 'http://v.ouchn.cn/live/v/Dx8nxE1H',
-  sourceList: [],
-})
-const getSourceList = () => {
-  sourceObj.sourceList = [
+  activeSource: 'https://v.ouchn.cn/live/v/Dx8nxE1H',
+  sourceList: [
     { id: 1, name: '哔哩哔哩', src: 'https://www.bilibili.com/' },
     { id: 2, name: '爱奇艺', src: 'https://www.iqiyi.com/' },
     { id: 3, name: '备选直播间', src: 'https://live.polyv.cn/watch/4627591' },
-  ]
+  ],
+})
+const getSourceList = () => {
   // const roundNum = Math.floor(Math.random() * 4)
   // sourceObj.activeSource = sourceObj.sourceList[roundNum].src
 }
@@ -45,7 +44,7 @@ const changeChannel = (item) => {
   window.open(item.src, '_blank')
 }
 onMounted(() => {
-  getSourceList()
+  // getSourceList()
 })
 </script>
 <style lang="scss" scoped>
