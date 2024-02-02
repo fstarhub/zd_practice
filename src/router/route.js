@@ -1,7 +1,22 @@
+/*
+ * @Description: 路由注册
+ * @Autor: fengshuai
+ * @Date: 2023-07-26 14:32:41
+ * @LastEditors: fengshuai
+ * @LastEditTime: 2024-02-02 11:00:18
+ */
 
 import { basicLayout, blankLayout, loginView, headLayout } from '../layouts/index'
 const userRoute = [
-  { path: '/', redirect: '/login' },
+  { path: '/', redirect: '/source' },
+  {
+    path: '/source',
+    component: () => import('@/views/videoSource/index')
+  },
+  {
+    path: '/linkTag',
+    component: () => import('@/views/videoSource/linkTag')
+  },
   {
     path: '/login',
     component: () => import('@/views/login/login')
