@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2024-02-01 14:17:43
  * @LastEditors: fengshuai
- * @LastEditTime: 2024-02-02 10:48:18
+ * @LastEditTime: 2024-02-02 11:09:15
 -->
 <template>
   <div class="container">
@@ -34,12 +34,13 @@ const sourceObj = reactive({
 })
 const getSourceList = () => {
   sourceObj.sourceList = [
-    { id: 1, name: '哔哩哔哩', src: 'https://uviewui.com/' },
-    { id: 2, name: '爱奇艺', src: 'http://www.chinadaily.com.cn/' },
-    { id: 3, name: '直播间二', src: 'https://live.polyv.cn/watch/4627591' },
+    { id: 1, name: '直播间', src: 'https://uviewui.com/' },
+    { id: 2, name: '哔哩哔哩', src: 'https://www.bilibili.com/' },
+    { id: 3, name: '爱奇艺', src: 'https://www.iqiyi.com/' },
+    { id: 4, name: '备用直播间', src: 'https://live.polyv.cn/watch/4627591' },
   ]
   const roundNum = Math.floor(Math.random() * 4)
-  sourceObj.activeSource = sourceObj.sourceList[roundNum].src?? ''
+  sourceObj.activeSource = sourceObj.sourceList[roundNum].src
 }
 const changeChannel = (item) => {
   sourceObj.activeSource = item.src

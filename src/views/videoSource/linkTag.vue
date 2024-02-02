@@ -3,7 +3,7 @@
  * @Autor: fengshuai
  * @Date: 2024-02-01 16:17:21
  * @LastEditors: fengshuai
- * @LastEditTime: 2024-02-02 10:48:14
+ * @LastEditTime: 2024-02-02 11:11:55
 -->
 <template>
   <div class="container">
@@ -22,9 +22,10 @@ const sourceObj = reactive({
 })
 const getSourceList = () => {
   sourceObj.sourceList = [
-    { id: 2, name: '哔哩哔哩', src: 'http://www.chinadaily.com.cn/' },
-    { id: 3, name: '爱奇艺', src: 'https://lbs.amap.com/' },
-    { id: 6, name: '直播间二', src: 'https://live.polyv.cn/watch/4627591' },
+    { id: 1, name: '直播间', src: 'http://v.ouchn.cn/live/v/Dx8nxE1H' },
+    { id: 2, name: '哔哩哔哩', src: 'https://www.bilibili.com/' },
+    { id: 3, name: '爱奇艺', src: 'https://www.iqiyi.com/' },
+    { id: 6, name: '备选直播间', src: 'https://live.polyv.cn/watch/4627591' },
   ]
   // const roundNum = Math.floor(Math.random() * 5)
   // sourceObj.activeSource = sourceObj.sourceList[roundNum].src
@@ -46,7 +47,7 @@ onMounted(() => {
   background-size: 100% 100%;
   .optionsRow {
     height: 86px;
-    width: 655px;
+    width: 845px;
     display: flex;
     justify-content: space-around;
     align-items: center;
